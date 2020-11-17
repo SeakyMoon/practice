@@ -3,110 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <title>导航栏</title>
-    <style>
-        ul{
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-            background-color: grey;
-        }
-        li{
-            float: left;
-        }
-        li a, .btn{
-            display: inline-block;
-            color: white;
-            text-align: center;
-            padding: 14px 16px;
-            text-decoration: none;
-        }
-        .drop a:hover{
-            background-color: black;
-        }
-        .drop{
-            display: inline-block;
-        }
-        .money{
-            display: none;
-            position: absolute;
-            background-color: white;
-            min-width: 160px;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-        }
-        .money a{
-            border: none;
-            color: black;
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-        }
-        .money a:hover{
-            background-color: white;
-        }
-        .drop:hover .money{
-            display: block;
-        }
-        .black_overlay{
-            display: none;
-            position: absolute;
-            top: 0%;
-            left: 0%;
-            width: 100%;
-            height: 100%;
-            background-color: #ffffff;
-            z-index:1001;
-            -moz-opacity: 0.8;
-            opacity:.80;
-            filter: alpha(opacity=80);
-        }
-        .white_content {
-            display: none;
-            position: absolute;
-            top: 10%;
-            left: 30%;
-            background-color: white;
-            z-index:1002; /* 数字的大小指明了div的相对层，数字大的在上层 */
-            overflow: auto;
-        }
-    </style>
+    <link rel="stylesheet" href="navbar.css">
 </head>
 <body>
-    <ul>
-        <li><a href="#" class="per">个人</a></li>
-        <li><a href="#" class="add">撩一下</a></li>
-        <div class="drop">
-            <a href="#" class="btn">打赏</a>
-            <div class="money">
-                <div><a href="#" onclick="openWindow(this)">微信</a></div>
-                <div><a href="#" onclick="openWindow(this)">支付宝</a></div>
-                <div id="WeChat" class="white_content">
-                    <img src='img/2.jpg' />
+    <div class="bg">
+        <ul>
+            <li><a href="#" class="per">个人</a></li>
+                <li><a href="#" id = "add_per" onclick = "openWindow(this)">撩一下</a></li>
+                <div id="add" class="white_content" style="left: 15%;">
+                    <img src="../img/1.png" >
                 </div>
-                <div id="Alipay" class="white_content">
-                    <img src='img/3.jpg' />
+                <div id="black1" class="black_overlay" onClick="closeWindow()"></div>
+            <div class="drop">
+                <a href="#" class="btn">打赏</a>
+                <div class="money">
+                    <div><a href="#" id="pay_WeChat" onclick="openWindow(this)">微信</a></div>
+                    <div><a href="#" id="pay_Alipay" onclick="openWindow(this)">支付宝</a></div>
+                    <div id="WeChat" class="white_content">
+                        <img src="../img/2.jpg" >
+                    </div>
+                    <div id="Alipay" class="white_content">
+                        <img src="../img/3.jpg" />
+                    </div>
+                    <div id="black" class="black_overlay" onClick="closeWindow()"></div>
                 </div>
-                <div id="black" class="black_overlay" onClick="closeWindow()"></div>
-
-<!--                <button id="Alipay" style="width: 100%">支付宝</button>-->
-<!--                <button id="WeChat" style="width: 100%">微信</button>-->
-<!--                <a href="#" class="Alipay">支付宝</a>-->
-<!--                <a href="#" class="WeChat">微信</a>-->
             </div>
-        </div>
-    </ul>
+        </ul>
+        <p>&nbsp&nbsp都点到这个页面来了，就不用我多说了吧，懂得都懂（滑稽）</p>
+        <div class="am"></div>
+        <div class="am1"></div>
+    </div>
+
     <script  type="text/javascript">
         function openWindow(obj){
-            var WeChat = "WeChat";
-            var Alipay = "Alipay"
-            document.getElementById(WeChat).style.display='block';
-            document.getElementById(Alipay).style.display='block';
+            var pay = "WeChat";
+            switch (obj.id){
+                case 'pay_WeChat': pay = "WeChat";
+                break;
+                case 'pay_Alipay': pay = "Alipay";
+                break;
+                case 'add_per': pay = "add";
+                break;
+            }
+            document.getElementById(pay).style.display='block';
             document.getElementById('black').style.display='block';
+            document.getElementById('black1').style.display='block';
         }
+
         function closeWindow(){
             document.getElementById('WeChat').style.display='none';
             document.getElementById('Alipay').style.display='none';
-            document.getElementById('black').style.display='none';
+            document.getElementById('add').style.display='none';
+            document.getElementById('black').style.display='none'; 
+            document.getElementById('black1').style.display='none';
         }
     </script>
 </body>
